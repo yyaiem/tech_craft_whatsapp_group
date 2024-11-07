@@ -48,7 +48,8 @@
 
         .inpt {
             /* height: 8px; */
-            padding: 8px;
+            font-size: 20px;
+            padding: 12px;
             width: 70vw;
             border: none;
             outline: none;
@@ -56,6 +57,8 @@
             border-radius: 10px;
             color: #ece5dd;
             font-weight: bold;
+        }::placeholder{
+            color: #dcf8c6;
         }
 
         .d {
@@ -77,7 +80,7 @@
                     Enter Your Group ID
                 </p>
             </div>
-            <input type="number" name="number" id="inpt" oninput="match()" class="inpt d">
+            <input type="number" name="number" id="inpt" oninput="match()" class="inpt d" placeholder="Group ID">
         </div>
     </div>
 
