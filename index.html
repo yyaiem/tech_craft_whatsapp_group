@@ -57,19 +57,27 @@
             color: #ece5dd;
             font-weight: bold;
         }
+
+        .d {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="page_container">
         <div class="usr_container">
+
             <div class="msgcontainer" id="msgcontaainer">
 
-                <p class="message" id="message">
+                <p class="message" id="lmessage">
+                    Loading.....
+                </p>
+                <p class="message d" id="message">
                     Enter Your Group ID
                 </p>
             </div>
-            <input type="number" name="number" id="inpt" oninput="match()" class="inpt">
+            <input type="number" name="number" id="inpt" oninput="match()" class="inpt d">
         </div>
     </div>
 
@@ -77,21 +85,50 @@
 
         const url = 'https://chat.whatsapp.com/BqIFoY80RmA3AY1fixhuZC';
 
-        if (localStorage.getItem('status') === 'logged'){
+        if (localStorage.getItem('status') === 'logged') {
             window.location.href = url
         }
 
-        localStorage.setItem('status',' ');
         function match() {
             let inpt = document.getElementById('inpt').value
-            
-            if (arr.includes(Number(inpt))) {
-                localStorage.setItem('status','logged');
+
+            if (window.arr.includes(inpt)) {
+                localStorage.setItem('status', 'logged');
                 window.location.href = url
             }
         }
+
+        const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzb-SCX_xWRhG9OB7-FGVarj1Jtj__wymkollCpySl_QnnpGg00eTrMfuQo2rYJOVK5Bw/exec"
+
+        async function fetchData() {
+            try {
+                const response = await fetch(googleAppsScriptURL);
+                if (!response.ok) {
+                    throw new Error('HTTP error! Status: ${ response.status } ');
+                }
+
+                const data = await response.text(); // Assuming the Apps Script returns JSON
+                if (data) {
+                    document.getElementById('lmessage').style.display = "none"
+                    document.getElementById('message').style.display = "block"
+                    document.getElementById('inpt').style.display = "block"
+                }
+                console.log(data);
+                console.log(typeof data);
+                window.arr = data.split(',');
+                window.arr.pop();
+                console.log(window.arr)
+
+
+
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetch function on page load
+        fetchData();
     </script>
-    <script src="script.js"></script>
 
 </body>
 
