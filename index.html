@@ -94,11 +94,11 @@
 
         function match() {
             let inpt = document.getElementById('inpt').value
-
+            if(inpt != ""){
             if (window.arr.includes(inpt)) {
                 localStorage.setItem('status', 'logged');
                 window.location.href = url
-            }
+            }}
         }
 
         const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbzb-SCX_xWRhG9OB7-FGVarj1Jtj__wymkollCpySl_QnnpGg00eTrMfuQo2rYJOVK5Bw/exec"
