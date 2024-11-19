@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechCraft Cirtificate</title>
+    <title>TechCraft Certificate</title>
     <style>
         .submit_button {
             display: none;
@@ -120,7 +120,7 @@
         <div>
 
             <div>
-                <h2>Download Your Cirtificate</h2>
+                <h2>Download Your Certificate</h2>
             </div>
             <div>
                 <form id="nameForm">
@@ -130,7 +130,7 @@
 
                         <p id="a"></p>
                         <button type="submit" class="submit_button" id="submit_button" name="status_box"> Find Your
-                            Cirtificate</button>
+                            Certificate</button>
                     </div>
                 </form>
             </div>
@@ -205,14 +205,14 @@
         let url = 'https://script.google.com/macros/s/AKfycbzfwwLVsRSzmNyaN101NQtOS2wqfD-fUe8HJ6A996f8G0cAbeQWSdh8rrmlm95dz2sB/exec'
         let form = document.querySelector('#nameForm')
         form.addEventListener("submit", (e) => {
-            e.target.status_box.innerHTML = "Finding Your Cirtificate..";
+            e.target.status_box.innerHTML = "Finding Your Certificate..";
 
 
             let form_data = new FormData(form);
 
             fetch(url, { method: "POST", body: form_data }).then((res) => res.text())
                 .then((finalRes) => {
-                    e.target.status_box.innerHTML = "Take Your Cirtificate";
+                    e.target.status_box.innerHTML = "Take Your Certificate";
                     form.reset();
 
                     link = finalRes.split(',');
