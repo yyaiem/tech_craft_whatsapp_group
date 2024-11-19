@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCraft Cirtificate</title>
+    <style>
+        .submit_button {
+            display: none;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background-color: #370874;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .site_bodyb,
+        .site_bodya {
+            background-color: #ffffff5f;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        #grpId {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            margin-top: 20px;
+        }
+
+        h2 {
+            color: white;
+        }
+
+        .alert {
+            display: flex;
+            color: white;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        #a {
+            margin-right: 4px;
+        }
+
+        .submit_button {
+            padding: 4px;
+        }
+
+        .cirtificatearea {
+            margin: 20px;
+            background-color: #ffffff45;
+            padding: 10px;
+            border-radius: 10px;
+
+        }
+
+        .button_container {
+            background-color: #009082;
+            margin: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        a,
+        .message {
+            color: white;
+            text-decoration: none;
+            margin: 10px;
+        }
+
+        .site_bodya {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .warning{
+            color: red;
+            background-color: #ffffff68;
+            font-weight: bold;
+            font-size: 12px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="site_bodya" id="secA">
+        <p class="message">
+            To download your certificate, please ensure you have joined our WhatsApp group via the registration
+            confirmation email. If you haven’t joined yet, kindly use the link in your registration email to join the
+            group first, and then you will be able to download your certificate.
+        </p>
+        <p class="message">
+
+            If you experience any issues, please reach out to our <strong> Yantayodha Tech Leads </strong>for
+            assistance.
+        </p>
+        <p class="warning">This device is not using the encryption provided by YantraYodha Club...!
+        </p>
+    </div>
+    <div class="site_bodyb" id="secB">
+        <div>
+
+            <div>
+                <h2>Download Your Cirtificate</h2>
+            </div>
+            <div>
+                <form id="nameForm">
+                    <input type="text" id="grpId" name="grpId" placeholder="Enter your Group ID" required
+                        oninput="valid()" />
+                    <div class="alert">
+
+                        <p id="a"></p>
+                        <button type="submit" class="submit_button" id="submit_button" name="status_box"> Find Your
+                            Cirtificate</button>
+                    </div>
+                </form>
+            </div>
+
+            <div>
+
+                <div class="cirtificatearea">
+                    <div class="files" id="files"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        if (localStorage.getItem('status') === 'logged') {
+            // window.location.href = url
+            document.getElementById("secA").style.display = "none"
+            document.getElementById("secB").style.display = "block"
+        }
+        if (localStorage.getItem('status') !== 'logged') {
+            // window.location.href = url
+            document.getElementById("secA").style.display = "block"
+            document.getElementById("secB").style.display = "none"
+        }
+        const googleAppsScriptURL = "https://script.google.com/macros/s/AKfycbweWdrx7ABLoyH7a1mypISQwdtml0QXeTqwwN3LR0Cs_JfT7rRwPDD6-aZI7EMQDxpE2Q/exec";
+
+        async function fetchData() {
+            try {
+                const response = await fetch(googleAppsScriptURL);
+                if (!response.ok) {
+                    throw new Error('HTTP error! Status: ${ response.status } ');
+                }
+
+                const data = await response.text(); // Assuming the Apps Script returns JSON
+                if (data) {
+
+                }
+                arrb = stringToArray(data)
+                // console.log(arrb)
+
+                for (let index = 0; index < arrb.length; index++) {
+                    // createStyledDiv(arrb[index])
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Call the fetch function on page load
+        fetchData();
+
+        function valid() {
+            let usr_inp = document.getElementById("grpId").value
+            for (let index = 0; index < arrb.length; index++) {
+                const element = arrb[index][0];
+                console.log(usr_inp)
+                if (usr_inp === `${element}`) {
+
+                    document.getElementById("a").innerText = arrb[index][1];
+                    document.getElementById("submit_button").style.display = "block"
+                    techCraftGroup = arrb[index];
+                }
+            }
+        }
+
+        function sv() {
+            // console.log(techCraftGroup)
+            localStorage.setItem("techCraftData", techCraftGroup)
+        }
+
+
+        let url = 'https://script.google.com/macros/s/AKfycbzfwwLVsRSzmNyaN101NQtOS2wqfD-fUe8HJ6A996f8G0cAbeQWSdh8rrmlm95dz2sB/exec'
+        let form = document.querySelector('#nameForm')
+        form.addEventListener("submit", (e) => {
+            e.target.status_box.innerHTML = "Finding Your Cirtificate..";
+
+
+            let form_data = new FormData(form);
+
+            fetch(url, { method: "POST", body: form_data }).then((res) => res.text())
+                .then((finalRes) => {
+                    e.target.status_box.innerHTML = "Take Your Cirtificate";
+                    form.reset();
+
+                    link = finalRes.split(',');
+                    localStorage.setItem("link", link)
+                    sv()
+                    cirtificateShow()
+                    // document.getElementById('a').innerText = finalRes;
+                })
+
+            e.preventDefault();
+
+        })
+
+        function stringToArray(str) {
+            return JSON.parse(str); // Convert JSON string back to an array
+        }
+
+        function removeFirstAndSort(arr) {
+            // Remove the first element of the array
+            arr.shift();
+
+            // Sort the array alphabetically in a case-insensitive manner
+            arr.sort();
+
+            return arr;
+        }
+
+        function cirtificateShow() {
+            document.getElementById("nameForm").style.display = "none"
+            if (localStorage.getItem("link")) {
+                let data = localStorage.getItem("link");
+                let names = localStorage.getItem("techCraftData")
+                names = removeFirstAndSort(names.split(","))
+                data = data.split(",")
+                for (let index = 0; index < data.length; index++) {
+                    const element = data[index];
+                    let container = document.createElement("div");
+                    container.className = "button_container"
+                    let cirtificateButton = document.createElement("a");
+                    cirtificateButton.target = "_blank"
+                    cirtificateButton.href = element;
+                    cirtificateButton.innerText = `Download for ${names[index]}`
+                    container.appendChild(cirtificateButton)
+                    document.getElementById("files").appendChild(container)
+
+                }
+            }
+        }
+
+        if (localStorage.getItem("techCraftData")) {
+            cirtificateShow();
+        }
+    </script>
+</body>
+
+</html>
