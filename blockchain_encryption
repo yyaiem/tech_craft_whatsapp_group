@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Bar Example</title>
+    <style>
+        /* Styling for the loading bar container */
+        #loading-container {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Styling for the progress bar itself */
+        #loading-bar {
+            height: 60px;
+            width: 0;
+            background-color: #ff0000;
+            text-align: center;
+            color: white;
+            line-height: 30px;
+        }
+
+        /* Optional: Styling for the loading message */
+        #loading-message {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #ff0000;
+        }
+
+        body {
+            background-color: #020f23;
+        }
+
+        /* Full page styling */
+        body {
+            animation: flicker 0.1s infinite;
+        }
+
+        /* Flicker effect animation */
+        @keyframes flicker {
+            0% {
+                background-color: #ff0000;
+                opacity: 1;
+            }
+
+            10% {
+                background-color: #0800ff;
+                opacity: 0.9;
+            }
+
+            20% {
+                background-color: #222;
+                opacity: 1;
+            }
+
+            30% {
+                background-color: #ff00d0;
+                opacity: 0.8;
+            }
+
+            40% {
+                background-color: #333;
+                opacity: 1;
+            }
+
+            50% {
+                background-color: #d0ff00;
+                opacity: 0.7;
+            }
+
+            60% {
+                background-color: #00000000;
+                opacity: 1;
+            }
+
+            70% {
+                background-color: #0d00ff;
+                opacity: 0.9;
+            }
+
+            80% {
+                background-color: #000000;
+                opacity: 1;
+            }
+
+            90% {
+                background-color: #000000;
+                opacity: 0.8;
+            }
+
+            100% {
+                background-color: #00ff51;
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- The container for the loading bar -->
+    <div id="loading-container">
+        <div id="loading-bar">0%</div>
+    </div>
+
+    <div id="loading-message">Loading...</div>
+
+    <!-- <script src="app.js"></script> -->
+    <script>
+
+        if (localStorage.getItem('status') === 'logged') {
+            // window.location.href = url
+            document.body.style.display = "none"
+            // document.getElementById("secB").style.display = "block"
+        }
+        if (localStorage.getItem('status') !== 'logged') {
+            // window.location.href = url
+            document.body.style.display = "block"
+            // document.getElementById("secB").style.display = "none"
+        }
+        // Function to simulate the loading process
+        function startLoading() {
+            const loadingBar = document.getElementById('loading-bar');
+            const loadingMessage = document.getElementById('loading-message');
+            let progress = 0;
+
+            // Set an interval to update the loading bar every 100ms
+            const interval = setInterval(() => {
+                progress += 2; // Increase progress by 2% on each step
+
+                // Update the width of the loading bar and its text
+                loadingBar.style.width = progress + '%';
+                loadingBar.textContent = progress + '%';
+
+                // When progress reaches 100%, stop the loading animation
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    loadingMessage.textContent = 'Installed!';
+                    loadingBar.style.backgroundColor = "#2edb18"
+                    loadingMessage.style.color = "#2edb18"
+                    setTimeout(() => {
+                        console.log('OK');
+                        localStorage.setItem("status","logged");
+            document.body.style.display = "none"
+                    }, 5000); // 5000 milliseconds = 5 seconds
+                }
+            }, 30); // 100ms interval
+        }
+
+        // Start the loading process when the page loads
+        window.onload = startLoading;
+        // Optional: Script to add more dynamic effects, like flashing text
+        const body = document.body;
+        // const message = document.querySelector('.message');
+
+        // Flicker function to add an extra random effect
+        function randomFlicker() {
+            setInterval(() => {
+                // Randomly change the font color or shadow of the message
+                const randomOpacity = Math.random() * 0.8 + 0.2; // Random opacity between 0.2 and 1
+                // message.style.opacity = randomOpacity;
+
+                // Randomly flicker red and white colors
+                const randomColor = Math.random() > 0.5 ? 'red' : 'white';
+                // message.style.color = randomColor;
+            }, Math.random() * 500 + 100); // Random interval between 100ms and 600ms
+        }
+
+        // Start the random flicker effect
+        randomFlicker();
+
+    </script>
+</body>
+
+</html>
