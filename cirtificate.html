@@ -218,7 +218,9 @@
                     link = finalRes.split(',');
                     localStorage.setItem("link", link)
                     sv()
+                    setTimeout(() => {
                     cirtificateShow()
+                    }, 3000);
                     // document.getElementById('a').innerText = finalRes;
                 })
 
