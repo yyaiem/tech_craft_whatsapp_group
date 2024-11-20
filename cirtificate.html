@@ -256,7 +256,10 @@
                     const element = data[index];
                     let container = document.createElement("div");
                     container.className = "button_container"
-                    
+                    container.oonclick = function(){
+                        window.location.href = element;
+                    }
+                        
                     let cirtificateButton = document.createElement("a");
                     cirtificateButton.target = "_blank"
                     cirtificateButton.href = element;
