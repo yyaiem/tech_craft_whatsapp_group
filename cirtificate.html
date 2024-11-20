@@ -254,6 +254,8 @@
 
                     
                     const element = data[index];
+
+                    
                     let container = document.createElement("div");
                     container.className = "button_container"
                     container.oonclick = function(){
@@ -265,7 +267,13 @@
                     cirtificateButton.href = element;
                     cirtificateButton.innerText = `Download for Member ${index + 1}`
                     container.appendChild(cirtificateButton)
-                    document.getElementById("files").appendChild(container)
+
+                    let parent = document.createElement("a");
+                    parent.target = "_blank"
+                    parent.href = element;
+                    parent.appendChild(container)
+                    
+                    document.getElementById("files").appendChild(parent)
 
                 }
             }
