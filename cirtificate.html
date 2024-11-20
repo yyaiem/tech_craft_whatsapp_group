@@ -145,6 +145,10 @@
 
     </div>
     <script>
+        if (localStorage.getItem('fim') != "ok"){
+            localStorage.removeItem('link');
+            localStorage.setItem("fim", "ok")
+        }
         if (localStorage.getItem('status') === 'logged') {
             // window.location.href = url
             document.getElementById("secA").style.display = "none"
