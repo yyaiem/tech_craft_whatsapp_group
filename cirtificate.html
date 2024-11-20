@@ -218,9 +218,10 @@
                     link = finalRes.split(',');
                     localStorage.setItem("link", link)
                     sv()
-                    setTimeout(() => {
+                    // setTimeout(() => {
+                    // cirtificateShow()
+                    // }, 3000);
                     cirtificateShow()
-                    }, 3000);
                     // document.getElementById('a').innerText = finalRes;
                 })
 
@@ -250,13 +251,16 @@
                 names = removeFirstAndSort(names.split(","))
                 data = data.split(",")
                 for (let index = 0; index < data.length; index++) {
+
+                    
                     const element = data[index];
                     let container = document.createElement("div");
                     container.className = "button_container"
+                    
                     let cirtificateButton = document.createElement("a");
                     cirtificateButton.target = "_blank"
                     cirtificateButton.href = element;
-                    cirtificateButton.innerText = `Download for ${names[index]}`
+                    cirtificateButton.innerText = `Download for Member ${ndex + 1}`
                     container.appendChild(cirtificateButton)
                     document.getElementById("files").appendChild(container)
 
