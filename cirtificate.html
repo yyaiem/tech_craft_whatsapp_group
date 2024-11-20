@@ -145,9 +145,10 @@
 
     </div>
     <script>
-        if (localStorage.getItem('fim') != "ok"){
+        if (localStorage.getItem('fim') != "1.3"){
             localStorage.removeItem('link');
-            localStorage.setItem("fim", "ok")
+            localStorage.removeItem('techCraftData');
+            localStorage.setItem("fim", "1.3")
         }
         if (localStorage.getItem('status') === 'logged') {
             // window.location.href = url
